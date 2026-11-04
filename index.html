@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen General D1</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3f8fe 0%, #e8f3fe 45%, #f0f7ff 100%);
+      color: #1e293b;
+      min-height: 100vh;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #93c5fd;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #60a5fa;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(191, 219, 254, 0.8);
+      box-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.06);
+    }
+    .glow-gold {
+      box-shadow: 0 4px 18px -2px rgba(245, 158, 11, 0.3);
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 10px !important;
+      }
+      header nav, .tab-btn, footer, #modal-kilometraje, #modal-cumplimiento, .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .glass-card {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        background: #ffffff !important;
+        page-break-inside: avoid;
+      }
+      @page {
+        size: letter landscape;
+        margin: 0.5cm;
+      }
+    }
+    .print-only {
+      display: none;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased font-sans flex flex-col justify-between">
+
+  <!-- CABECERA EJECUTIVA -->
+  <header class="border-b border-brand-200 bg-white/95 backdrop-blur-md sticky top-0 z-40 px-4 lg:px-8 py-3.5 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-cyan-500 flex items-center justify-center font-heading font-black text-white text-lg shadow-md shadow-brand-500/25">
+          D1
+        </div>
+        <div>
+          <h1 class="text-xl md:text-2xl font-bold font-heading text-slate-900 tracking-tight flex items-center gap-2">
+            Resumen General D1
+            <span class="text-xs bg-brand-100 text-brand-700 border border-brand-300 px-2.5 py-0.5 rounded-full font-sans font-semibold">Oficial</span>
+          </h1>
+          <p class="text-[11px] text-brand-700 font-medium">Panel Integral de Control de Gestión | Corte Operativo al 02-11-2026</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- BOTÓN DISCRETO DESCARGAR INFORME EJECUTIVO -->
+        <button onclick="window.print()" class="no-print group flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 hover:text-brand-900 border border-brand-200 hover:border-brand-300 transition-all text-xs font-semibold shadow-sm active:scale-95" title="Imprimir o guardar resumen en PDF">
+          <svg class="w-4 h-4 text-brand-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+          </svg>
+          <span>🖨️ Descargar Informe Ejecutivo</span>
+        </button>
+
+        <div class="text-xs font-semibold text-slate-500 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 hidden md:flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          Datos 100% Excel D1
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="bg-white/90 border-b border-brand-200 px-4 lg:px-8 py-2.5 sticky top-[69px] z-30 backdrop-blur-md no-print">
+    <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
+      <button onclick="switchTab('rnlt')" id="tab-btn-rnlt" class="tab-btn active px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap bg-brand-600 text-white shadow-md shadow-brand-500/25">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        Comercial RNLT
+      </button>
+
+      <button onclick="switchTab('vas')" id="tab-btn-vas" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap bg-white text-slate-600 hover:text-brand-700 hover:bg-brand-50 border border-brand-200 shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        Comercial VAS
+      </button>
+
+      <!-- ENLACE EXTERNO DUCATI -->
+      <a href="https://dashboard-ventas-ducati-3rk7.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap bg-gradient-to-r from-red-50 to-rose-100 hover:from-red-100 hover:to-rose-200 text-red-700 border border-red-200 shadow-sm group">
+        <span class="w-2 h-2 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></span>
+        <span>Comercial Ducati</span>
+        <svg class="w-3.5 h-3.5 ml-0.5 text-red-600 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+
+      <!-- POSVENTA -->
+      <button onclick="switchTab('posventa')" id="tab-btn-posventa" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap bg-white text-slate-600 hover:text-brand-700 hover:bg-brand-50 border border-brand-200 shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Posventa & Servicios
+      </button>
+
+      <!-- FINANZAS Y CARTERA -->
+      <button onclick="handleFinanzasTabClick()" id="tab-btn-finanzas" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap bg-white text-slate-600 hover:text-brand-700 hover:bg-brand-50 border border-brand-200 shadow-sm">
+        <svg id="lock-icon" class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        Finanzas & Cartera
+      </button>
+
+      <!-- ADMINISTRACIÓN & XIRO -->
+      <button onclick="switchTab('administracion')" id="tab-btn-administracion" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap bg-white text-slate-600 hover:text-brand-700 hover:bg-brand-50 border border-brand-200 shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        Administración & XiRO
+      </button>
+
+      <!-- SEGUROS AREKUNA -->
+      <button onclick="switchTab('arekuna')" id="tab-btn-arekuna" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap bg-white text-slate-600 hover:text-brand-700 hover:bg-brand-50 border border-brand-200 shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        Seguros Arekuna
+      </button>
+
+      <!-- GESTIÓN INTEGRAL -->
+      <button onclick="switchTab('gestion')" id="tab-btn-gestion" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap bg-white text-slate-600 hover:text-brand-700 hover:bg-brand-50 border border-brand-200 shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        Gestión Integral
+      </button>
+    </div>
+  </nav>
+
+  <!-- REPORTE DE 1 PÁGINA PARA IMPRESIÓN (SOLO PRINT) -->
+  <div class="print-only p-4 bg-white text-slate-900">
+    <div class="border-b-2 border-brand-700 pb-2 mb-2 flex justify-between items-center">
+      <div>
+        <h1 class="text-lg font-bold font-heading text-slate-900">RESUMEN GENERAL D1 - CONSOLIDADO EJECUTIVO DE GESTIÓN</h1>
+        <p class="text-[9px] text-slate-600">Libro Maestro Excel al 02-11-2026 | Grupo Automotriz & Financiero D1</p>
+      </div>
+      <div class="text-right text-[9px]">
+        <span class="font-bold text-brand-700 block">Junta Directiva</span>
+        <span>Generado: 04-Nov-2026</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-2 mb-2 text-[10px]">
+      <div class="p-2 border border-slate-300 rounded bg-slate-50">
+        <span class="text-slate-500 block text-[8px]">Comercial RNLT</span>
+        <span class="text-xs font-bold text-slate-900">$6,409,225 | 238 u.</span>
+        <span class="text-[8px] text-brand-700 block">Ticket: $26,929.52 | Usados: 27</span>
+      </div>
+      <div class="p-2 border border-slate-300 rounded bg-slate-50">
+        <span class="text-slate-500 block text-[8px]">Comercial VAS</span>
+        <span class="text-xs font-bold text-slate-900">$3,957,445 | 115 u.</span>
+        <span class="text-[8px] text-cyan-700 block">Ticket: $34,412.57 | T-Cross 72.2%</span>
+      </div>
+      <div class="p-2 border border-slate-300 rounded bg-slate-50">
+        <span class="text-slate-500 block text-[8px]">Cartera Total Pendiente</span>
+        <span class="text-xs font-bold text-slate-900">$18,252,229.71</span>
+        <span class="text-[8px] text-emerald-700 block">Cobrado: $5,208,198.38 (478 créd.)</span>
+      </div>
+      <div class="p-2 border border-slate-300 rounded bg-slate-50">
+        <span class="text-slate-500 block text-[8px]">Seguros & XiRO</span>
+        <span class="text-xs font-bold text-slate-900">Arekuna: 62 Pólizas</span>
+        <span class="text-[8px] text-slate-600 block">XiRO Neta: $21,760 (39 u.)</span>
+      </div>
+    </div>
+
+    <table class="w-full text-[9px] border border-slate-300 border-collapse mb-2">
+      <thead class="bg-slate-100">
+        <tr>
+          <th class="p-1 border border-slate-300 text-left">Unidad / Concesionario</th>
+          <th class="p-1 border border-slate-300 text-center">Unidades / Préstamos</th>
+          <th class="p-1 border border-slate-300 text-right">Saldo Pendiente ($)</th>
+          <th class="p-1 border border-slate-300 text-right">Monto Cobrado ($)</th>
+          <th class="p-1 border border-slate-300 text-left">Líder Comercial / Detalle Operativo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-1 border border-slate-300 font-semibold">Renault Chacao</td>
+          <td class="p-1 border border-slate-300 text-center">286 Préstamos (238 ventas)</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$9,605,784.29</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$2,585,046.35</td>
+          <td class="p-1 border border-slate-300">Brayam Vielma 🥇 (9 u.) | Irene Perez 🥈 (6 u.)</td>
+        </tr>
+        <tr>
+          <td class="p-1 border border-slate-300 font-semibold">Volkswagen Chacao</td>
+          <td class="p-1 border border-slate-300 text-center">119 Préstamos (115 ventas)</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$6,023,042.90</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$940,958.33</td>
+          <td class="p-1 border border-slate-300">Reneisy 🥇 (16 u.) | Yendi Gutierrez 🥈 (11 u.)</td>
+        </tr>
+        <tr>
+          <td class="p-1 border border-slate-300 font-semibold">Ducati Caracas</td>
+          <td class="p-1 border border-slate-300 text-center">40 Préstamos</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$857,402.64</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$328,309.80</td>
+          <td class="p-1 border border-slate-300">Plataforma Externa Conectada</td>
+        </tr>
+        <tr>
+          <td class="p-1 border border-slate-300 font-semibold">Otros (Consorcios)</td>
+          <td class="p-1 border border-slate-300 text-center">18 Préstamos</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$1,368,223.07</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$1,332,825.97</td>
+          <td class="p-1 border border-slate-300">Tasa de Recuperación: 49.34%</td>
+        </tr>
+        <tr>
+          <td class="p-1 border border-slate-300 font-semibold">XiRO Finanzas</td>
+          <td class="p-1 border border-slate-300 text-center">15 Préstamos</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$397,776.81</td>
+          <td class="p-1 border border-slate-300 text-right font-mono">$21,057.93</td>
+          <td class="p-1 border border-slate-300">Utilidad Bruta Ventas: $74,297</td>
+        </tr>
+        <tr>
+          <td class="p-1 border border-slate-300 font-semibold">Total Consolidado</td>
+          <td class="p-1 border border-slate-300 text-center font-bold">478 Préstamos</td>
+          <td class="p-1 border border-slate-300 text-right font-mono font-bold">$18,252,229.71</td>
+          <td class="p-1 border border-slate-300 text-right font-mono font-bold">$5,208,198.38</td>
+          <td class="p-1 border border-slate-300 font-semibold">Mora: $87,738 (0.48%) | 20 clientes</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="grid grid-cols-2 gap-2 text-[8.5px]">
+      <div class="border border-slate-300 p-1.5 rounded">
+        <strong>Gestión de Procesos & Talento:</strong> 89% Optimización en tiempos de cobranzas (de 54.6h a 5.8h). Gasto de personal USD 88,020 (Efectivo $78,770 + Creska $9,250). Implementación exitosa piloto App Dámelo al 5% mensual.
+      </div>
+      <div class="border border-slate-300 p-1.5 rounded">
+        <strong>Servicios & Cumplimiento:</strong> 398 mantenimientos ejecutados en posventa (Renault 290, VW 106). 113.4h ejecutadas en 12 inmuebles (90% cumplimiento). Semana 23-28 Oct: 11 expedientes ($283,256 financiados).
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 w-full flex-grow">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: COMERCIAL RNLT (DATOS EXACTOS EXCEL) -->
+    <!-- ========================================== -->
+    <section id="view-rnlt" class="space-y-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-white via-brand-50 to-sky-100 p-6 rounded-2xl border border-brand-200 shadow-sm">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-brand-600">División Automotriz RNLT</span>
+          <h2 class="text-2xl font-bold font-heading text-slate-900">Comercial Renault (RNLT)</h2>
+          <p class="text-xs text-slate-500">Métricas exactas del libro: Facturación acumulada, 14 modelos 2026 y vehículos usados</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <span class="text-xs text-slate-500 block font-medium">Facturación Acumulada</span>
+            <span class="text-xl md:text-2xl font-black text-brand-700">$6,409,225 USD</span>
+          </div>
+          <div class="h-10 w-px bg-brand-200"></div>
+          <div class="text-right">
+            <span class="text-xs text-slate-500 block font-medium">Unidades Vendidas</span>
+            <span class="text-xl md:text-2xl font-black text-cyan-600">238 Vehículos</span>
+          </div>
+          <div class="h-10 w-px bg-brand-200 hidden sm:block"></div>
+          <div class="text-right hidden sm:block">
+            <span class="text-xs text-slate-500 block font-medium">Ticket Promedio</span>
+            <span class="text-lg font-bold text-slate-800">$26,929.52</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RÉCORD DE VENDEDORES RNLT CON MEDALLAS -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-5 border border-brand-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-brand-100">
+              <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                <span>🏆</span> Récord de Ventas por Vendedor
+              </h3>
+              <span class="text-xs bg-amber-100 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-full font-semibold">Podio Oficial</span>
+            </div>
+
+            <div class="space-y-3.5">
+              <!-- ORO -->
+              <div class="p-4 rounded-xl bg-gradient-to-r from-amber-50 to-amber-100/70 border border-amber-300 relative glow-gold">
+                <div class="absolute right-3 top-3 text-3xl select-none">🥇</div>
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-800 font-bold text-lg">
+                    1°
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-bold text-slate-900 text-base">Brayam Vielma</h4>
+                      <span class="text-xs bg-amber-500 text-white font-extrabold px-1.5 py-0.5 rounded">ORO</span>
+                    </div>
+                    <p class="text-xs text-amber-800 font-medium">Líder Comercial RNLT</p>
+                    <div class="mt-1 flex items-center gap-3 text-sm">
+                      <span class="font-black text-amber-700 text-lg">9 Unidades</span>
+                      <span class="text-xs text-slate-600">60.0% del equipo</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PLATA -->
+              <div class="p-3.5 rounded-xl bg-gradient-to-r from-slate-50 to-sky-50 border border-slate-300 relative shadow-sm">
+                <div class="absolute right-3 top-3 text-2xl select-none">🥈</div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-700 font-bold">
+                    2°
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-bold text-slate-800 text-sm">Irene Perez</h4>
+                      <span class="text-xs bg-slate-400 text-white font-bold px-1.5 py-0.5 rounded">PLATA</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Asesor Comercial Senior</p>
+                    <div class="mt-1 flex items-center gap-2 text-sm">
+                      <span class="font-bold text-slate-800 text-base">6 Unidades</span>
+                      <span class="text-xs text-slate-500">40.0% del equipo</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-brand-100 flex justify-between items-center text-xs">
+            <span class="text-slate-500">Total Vendedores Registrados:</span>
+            <span class="font-bold text-brand-700 text-sm">15 Unidades</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border border-brand-200 lg:col-span-2">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-500"></span>
+              Comparativa Directa de Récord RNLT
+            </h3>
+            <span class="text-xs text-slate-500">Unidades cerradas</span>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chart-rnlt-vendedores"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVOLUCIÓN MENSUAL REAL Y CONDICIÓN DE PAGO -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-5 border border-brand-200 lg:col-span-2">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Evolución Mensual de Ventas RNLT (Ene - Oct 2026)</h3>
+              <p class="text-xs text-slate-500">Unidades reales vs Facturación ($ USD)</p>
+            </div>
+            <span class="text-xs bg-brand-100 text-brand-700 px-2.5 py-1 rounded-lg font-semibold">10 Meses</span>
+          </div>
+          <div class="h-72 relative">
+            <canvas id="chart-rnlt-mensual"></canvas>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Condición de Pago</h3>
+              <p class="text-xs text-slate-500">Financiamiento vs Contado</p>
+            </div>
+            <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded-lg font-semibold">238 u.</span>
+          </div>
+          <div class="h-52 relative">
+            <canvas id="chart-rnlt-condicion"></canvas>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-100 space-y-1 text-xs">
+            <div class="flex justify-between"><span>Financiamiento:</span><strong>181 u. (76.0%)</strong></div>
+            <div class="flex justify-between"><span>Contado:</span><strong>56 u. (23.5%)</strong></div>
+            <div class="flex justify-between"><span>Leasing:</span><strong>1 u. (0.5%)</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODELOS ACUMULADOS 2026 (14 MODELOS EXACTOS) Y USADOS -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-5 border border-brand-200 lg:col-span-2">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Modelos Acumulados RNLT 2026 (237 Unidades)</h3>
+              <p class="text-xs text-slate-500">Ranking completo de las 14 versiones vendidas</p>
+            </div>
+            <span class="text-xs bg-cyan-100 text-cyan-800 px-2.5 py-0.5 rounded-lg font-semibold">Logan MT Líder</span>
+          </div>
+          <div class="h-80 relative">
+            <canvas id="chart-rnlt-modelos"></canvas>
+          </div>
+        </div>
+
+        <!-- VEHICULOS USADOS RNLT -->
+        <div class="glass-card rounded-2xl p-5 border border-brand-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-base text-slate-800">Vehículos Usados RNLT</h3>
+              <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-lg">27 Unidades</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">Distribución mensual de seminuevos vendidos por la división</p>
+            <div class="h-52 relative">
+              <canvas id="chart-rnlt-usados"></canvas>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-brand-100 text-[11px] text-slate-600 flex justify-between">
+            <span>Pico en Ago (8 u.) y Sep (7 u.)</span>
+            <span class="font-bold text-brand-700">Total: 27 Vehículos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: COMERCIAL VAS (DATOS EXACTOS EXCEL) -->
+    <!-- ========================================== -->
+    <section id="view-vas" class="hidden space-y-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-white via-sky-50 to-cyan-100 p-6 rounded-2xl border border-brand-200 shadow-sm">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-cyan-600">División Automotriz VAS</span>
+          <h2 class="text-2xl font-bold font-heading text-slate-900">Comercial Volkswagen (VAS)</h2>
+          <p class="text-xs text-slate-500">Métricas exactas: Facturación acumulada $3.95M, récord por asesor y modelos T-Cross, Tera y Virtus</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <span class="text-xs text-slate-500 block font-medium">Facturación Acumulada</span>
+            <span class="text-xl md:text-2xl font-black text-brand-700">$3,957,445 USD</span>
+          </div>
+          <div class="h-10 w-px bg-brand-200"></div>
+          <div class="text-right">
+            <span class="text-xs text-slate-500 block font-medium">Unidades Vendidas</span>
+            <span class="text-xl md:text-2xl font-black text-cyan-600">115 Vehículos</span>
+          </div>
+          <div class="h-10 w-px bg-brand-200 hidden sm:block"></div>
+          <div class="text-right hidden sm:block">
+            <span class="text-xs text-slate-500 block font-medium">Ticket Promedio</span>
+            <span class="text-lg font-bold text-slate-800">$34,412.57</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RÉCORD DE VENDEDORES VAS CON MEDALLAS -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-5 border border-brand-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-brand-100">
+              <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                <span>🏆</span> Récord de Ventas por Vendedor VAS
+              </h3>
+              <span class="text-xs bg-amber-100 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-full font-semibold">Podio Oficial</span>
+            </div>
+
+            <div class="space-y-3.5">
+              <!-- ORO VAS -->
+              <div class="p-4 rounded-xl bg-gradient-to-r from-amber-50 to-amber-100/70 border border-amber-300 relative glow-gold">
+                <div class="absolute right-3 top-3 text-3xl select-none">🥇</div>
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-800 font-bold text-lg">
+                    1°
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-bold text-slate-900 text-base">Reneisy</h4>
+                      <span class="text-xs bg-amber-500 text-white font-black px-1.5 py-0.5 rounded">ORO</span>
+                    </div>
+                    <p class="text-xs text-amber-800 font-medium">Top Producer VAS Nacional</p>
+                    <div class="mt-1 flex items-center gap-3 text-sm">
+                      <span class="font-black text-amber-700 text-lg">16 Unidades</span>
+                      <span class="text-xs text-slate-600">59.26% del récord</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PLATA VAS -->
+              <div class="p-3.5 rounded-xl bg-gradient-to-r from-slate-50 to-sky-50 border border-slate-300 relative shadow-sm">
+                <div class="absolute right-3 top-3 text-2xl select-none">🥈</div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-700 font-bold">
+                    2°
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-bold text-slate-800 text-sm">Yendi Gutierrez</h4>
+                      <span class="text-xs bg-slate-400 text-white font-bold px-1.5 py-0.5 rounded">PLATA</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Asesor Comercial Senior</p>
+                    <div class="mt-1 flex items-center gap-2 text-sm">
+                      <span class="font-bold text-slate-800 text-base">11 Unidades</span>
+                      <span class="text-xs text-slate-500">40.74% del récord</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-brand-100 flex justify-between items-center text-xs">
+            <span class="text-slate-500">Total Unidades Vendedores Top:</span>
+            <span class="font-bold text-cyan-600 text-sm">27 Unidades</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border border-brand-200 lg:col-span-2">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              Récord Comercial VAS (Unidades Facturadas)
+            </h3>
+            <span class="text-xs text-slate-500">Top 2 Asesores</span>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chart-vas-vendedores"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- MENSUAL REAL VAS Y MODELOS -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Evolución Mensual Facturación y Unidades VAS</h3>
+              <p class="text-xs text-slate-500">Enero a Octubre 2026 (Pico Octubre: 27 u. - $822k)</p>
+            </div>
+            <span class="text-xs bg-brand-100 text-brand-700 px-2.5 py-1 rounded-lg font-semibold">10 Meses</span>
+          </div>
+          <div class="h-72 relative">
+            <canvas id="chart-vas-mensual"></canvas>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Distribución de Modelos VAS (115 Unidades)</h3>
+              <p class="text-xs text-slate-500">T-Cross, Tera y Virtus</p>
+            </div>
+            <span class="text-xs bg-cyan-100 text-cyan-800 px-2.5 py-1 rounded-lg font-semibold">T-Cross 72.17%</span>
+          </div>
+          <div class="h-72 relative">
+            <canvas id="chart-vas-modelos"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: POSVENTA & SERVICIOS (CON MODAL KM) -->
+    <!-- ========================================== -->
+    <section id="view-posventa" class="hidden space-y-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-white via-sky-50 to-blue-100 p-6 rounded-2xl border border-brand-200 shadow-sm">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-cyan-600">Servicio Técnico & Taller</span>
+          <h2 class="text-2xl font-bold font-heading text-slate-900">Posventa & Mantenimiento</h2>
+          <p class="text-xs text-slate-500">Total histórico de 398 servicios (2025: 35 | 2026: 361) y seguimiento de garantías</p>
+        </div>
+        <button onclick="openModalKilometraje()" class="px-5 py-3 rounded-xl bg-gradient-to-r from-brand-600 via-cyan-600 to-sky-600 hover:from-brand-700 hover:to-cyan-700 text-white font-bold text-xs md:text-sm shadow-md shadow-brand-500/25 flex items-center gap-2.5 transform active:scale-95 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span>🔍 Ver Distribución de Servicios por Kilometraje</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Total Servicios Realizados</span>
+          <span class="text-2xl font-black text-slate-900 mt-1 block">398 Servicios</span>
+          <span class="text-xs text-brand-600 mt-1 inline-block font-semibold">2025: 35 | 2026: 361</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Servicios RENAULT</span>
+          <span class="text-2xl font-black text-brand-700 mt-1 block">290 Órdenes</span>
+          <span class="text-xs text-slate-500 mt-1 inline-block">2025: 29 | 2026: 261 (72.86%)</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Servicios VOLKSWAGEN</span>
+          <span class="text-2xl font-black text-cyan-600 mt-1 block">106 Órdenes</span>
+          <span class="text-xs text-slate-500 mt-1 inline-block">2025: 6 | 2026: 100 (26.63%)</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-amber-200">
+          <span class="text-xs text-slate-500 block font-medium">Casos de Garantía Especial</span>
+          <span class="text-2xl font-black text-amber-600 mt-1 block">2 Casos</span>
+          <span class="text-xs text-amber-700 mt-1 inline-block font-semibold">Catalizador: Figueredo y Poleo</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Servicios por Marca: Renault vs Volkswagen</h3>
+              <p class="text-xs text-slate-500">Comparativa 2025 vs 2026</p>
+            </div>
+            <span class="text-xs bg-brand-100 text-brand-700 px-2.5 py-1 rounded-lg font-semibold">Total 398</span>
+          </div>
+          <div class="h-72 relative">
+            <canvas id="chart-posventa-marcas-anual"></canvas>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border border-brand-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-base text-slate-800">Detalle de Garantías de Taller</h3>
+              <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-lg font-bold">Piezas en Garantía</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4">Expedientes técnicos de sustitución y seguimiento de piezas críticas</p>
+            <div class="space-y-3">
+              <div class="p-3 rounded-xl bg-white border border-brand-200 flex justify-between items-center shadow-sm">
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">Jahen Figueredo</h4>
+                  <p class="text-xs text-slate-500">Componente: Reemplazo Catalizador</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200">En Garantía</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white border border-brand-200 flex justify-between items-center shadow-sm">
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">Corina Poleo</h4>
+                  <p class="text-xs text-slate-500">Componente: Reemplazo Catalizador</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200">En Garantía</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-100 text-xs text-slate-500 flex justify-between items-center">
+            <span>Taller Autorizado Chacao</span>
+            <button onclick="openModalKilometraje()" class="text-brand-600 font-bold hover:underline">Ver desglose kilometraje &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: FINANZAS & CARTERA (DATOS REALES & PIN 0000) -->
+    <!-- ========================================== -->
+    <section id="view-finanzas" class="hidden space-y-6">
+      
+      <!-- PANTALLA BLOQUEADA (REQUIERE CLAVE 0000) -->
+      <div id="finanzas-locked-screen" class="glass-card rounded-2xl p-8 md:p-12 border border-brand-300 text-center max-w-lg mx-auto shadow-xl">
+        <div class="w-16 h-16 rounded-2xl bg-brand-100 border border-brand-300 flex items-center justify-center mx-auto text-brand-600 mb-4 shadow-sm">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold font-heading text-slate-900">Acceso Protegido: Finanzas & Cartera</h3>
+        <p class="text-xs text-slate-500 mt-2">Esta sección contiene datos confidenciales de cartera de crédito, morosidad por cliente y saldos concesionarios. Ingrese la clave de 4 dígitos.</p>
+        
+        <div class="mt-6">
+          <input type="password" id="pin-input" maxlength="4" placeholder="••••" class="w-44 text-center tracking-[0.5em] text-2xl font-mono py-2.5 px-4 rounded-xl bg-white border-2 border-brand-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm">
+          <p id="pin-error-msg" class="text-xs text-rose-600 mt-2 hidden font-semibold">Clave incorrecta. Use '0000'.</p>
+        </div>
+
+        <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3">
+          <button onclick="verifyPin()" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm shadow-md shadow-brand-500/30 transition-all active:scale-95">
+            Desbloquear Cartera
+          </button>
+          <button onclick="switchTab('rnlt')" class="px-4 py-2.5 rounded-xl bg-white hover:bg-brand-50 text-slate-600 font-medium text-sm border border-brand-200 transition-all shadow-sm">
+            Volver
+          </button>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-4">Clave autorizada: (0000) | Se re-bloquea automáticamente al salir</p>
+      </div>
+
+      <!-- PANTALLA DESBLOQUEADA -->
+      <div id="finanzas-unlocked-content" class="hidden space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-white via-blue-50 to-sky-100 p-6 rounded-2xl border border-brand-200 shadow-sm">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs uppercase font-extrabold tracking-wider text-emerald-600">Acceso Seguro Autorizado</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            </div>
+            <h2 class="text-2xl font-bold font-heading text-slate-900">Finanzas & Cartera por Concesionario</h2>
+            <p class="text-xs text-slate-500">478 préstamos activos | Capital prestado: $13,720,060.67 | Total Cartera: $23,476,714 USD</p>
+          </div>
+          <button onclick="lockFinanzas()" class="px-4 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-300 text-rose-700 font-bold text-xs flex items-center gap-2 shadow-sm transition-all active:scale-95">
+            <svg class="w-4 h-4 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span>🔒 Cerrar / Bloquear Vista de Cartera</span>
+          </button>
+        </div>
+
+        <!-- RATIOS Y MÉTRICAS GLOBALES REALES -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div class="glass-card rounded-2xl p-3.5 border border-brand-200">
+            <span class="text-[11px] text-slate-500 block font-medium">Total Cartera Pendiente</span>
+            <span class="text-lg font-black text-brand-800 mt-1 block font-mono">$18,252,229.71</span>
+            <span class="text-[10px] text-brand-600 font-semibold">478 Préstamos</span>
+          </div>
+          <div class="glass-card rounded-2xl p-3.5 border border-brand-200">
+            <span class="text-[11px] text-slate-500 block font-medium">Total Cobrado</span>
+            <span class="text-lg font-black text-emerald-600 mt-1 block font-mono">$5,208,198.38</span>
+            <span class="text-[10px] text-emerald-700 font-semibold">Capital + Interés</span>
+          </div>
+          <div class="glass-card rounded-2xl p-3.5 border border-brand-200">
+            <span class="text-[11px] text-slate-500 block font-medium">Capital Prestado</span>
+            <span class="text-lg font-black text-slate-800 mt-1 block font-mono">$13,720,061</span>
+            <span class="text-[10px] text-slate-500">Interés: $9,756,653</span>
+          </div>
+          <div class="glass-card rounded-2xl p-3.5 border border-rose-200">
+            <span class="text-[11px] text-slate-500 block font-medium">Mora (> 0 días)</span>
+            <span class="text-lg font-black text-rose-600 mt-1 block font-mono">$87,738</span>
+            <span class="text-[10px] text-rose-600 font-semibold">0.48% (20 Clientes)</span>
+          </div>
+          <div class="glass-card rounded-2xl p-3.5 border border-brand-200">
+            <span class="text-[11px] text-slate-500 block font-medium">Condiciones Crédito</span>
+            <span class="text-lg font-black text-cyan-600 mt-1 block">Tasa: 24.25%</span>
+            <span class="text-[10px] text-slate-500">Plazo medio: 34 m</span>
+          </div>
+          <div class="glass-card rounded-2xl p-3.5 border border-brand-200">
+            <span class="text-[11px] text-slate-500 block font-medium">Ticket & Cuota Media</span>
+            <span class="text-lg font-black text-slate-800 mt-1 block">$28,625</span>
+            <span class="text-[10px] text-amber-600 font-semibold">35 Autos Apagados GPS</span>
+          </div>
+        </div>
+
+        <!-- GRÁFICOS DE CARTERA PENDIENTE VS COBRADA -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="glass-card rounded-2xl p-5 border border-brand-200">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="font-bold text-base text-slate-800">Cartera: Total Pendiente vs Total Cobrado</h3>
+                <p class="text-xs text-slate-500">Por Concesionario / Entidad (USD)</p>
+              </div>
+              <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded font-semibold">5 Entidades</span>
+            </div>
+            <div class="h-72 relative">
+              <canvas id="chart-finanzas-concesionarios"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl p-5 border border-brand-200">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="font-bold text-base text-slate-800">Participación en Saldo Pendiente</h3>
+                <p class="text-xs text-slate-500">Distribución de los $18.25M</p>
+              </div>
+              <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-semibold">Renault 52.6%</span>
+            </div>
+            <div class="h-72 relative">
+              <canvas id="chart-finanzas-distribucion"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABLA COMPLETA CON SALDOS EXACTOS DEL EXCEL -->
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <h3 class="font-bold text-base text-slate-800 mb-3">Resumen Maestro de Cartera por Concesionario</h3>
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-brand-200 text-slate-600 uppercase font-semibold text-[10px] bg-brand-50">
+                  <th class="py-2.5 px-3">Concesionario</th>
+                  <th class="py-2.5 px-3 text-center">N° Prést.</th>
+                  <th class="py-2.5 px-3 text-right">Prestado</th>
+                  <th class="py-2.5 px-3 text-right">Pend. Capital</th>
+                  <th class="py-2.5 px-3 text-right">Pend. Interés</th>
+                  <th class="py-2.5 px-3 text-right">Total Pendiente</th>
+                  <th class="py-2.5 px-3 text-right">Cobrado Capital</th>
+                  <th class="py-2.5 px-3 text-right">Cobrado Interés</th>
+                  <th class="py-2.5 px-3 text-right">Total Cobrado</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-brand-100 text-slate-700 font-mono text-[11px]">
+                <tr class="hover:bg-brand-50/60 font-sans">
+                  <td class="py-2.5 px-3 font-semibold text-slate-900">Renault Chacao</td>
+                  <td class="text-center font-bold text-brand-700 font-mono">286</td>
+                  <td class="text-right font-mono">$6,840,223.50</td>
+                  <td class="text-right font-mono">$5,133,608.38</td>
+                  <td class="text-right font-mono">$4,472,175.91</td>
+                  <td class="text-right font-mono font-bold text-slate-900">$9,605,784.29</td>
+                  <td class="text-right font-mono text-emerald-600">$1,703,051.49</td>
+                  <td class="text-right font-mono text-emerald-600">$881,994.86</td>
+                  <td class="text-right font-mono font-bold text-emerald-600">$2,585,046.35</td>
+                </tr>
+                <tr class="hover:bg-brand-50/60 font-sans">
+                  <td class="py-2.5 px-3 font-semibold text-slate-900">Volkswagen Chacao</td>
+                  <td class="text-center font-bold text-cyan-600 font-mono">119</td>
+                  <td class="text-right font-mono">$3,675,146.02</td>
+                  <td class="text-right font-mono">$3,083,940.44</td>
+                  <td class="text-right font-mono">$2,939,102.46</td>
+                  <td class="text-right font-mono font-bold text-slate-900">$6,023,042.90</td>
+                  <td class="text-right font-mono text-emerald-600">$594,301.92</td>
+                  <td class="text-right font-mono text-emerald-600">$346,656.41</td>
+                  <td class="text-right font-mono font-bold text-emerald-600">$940,958.33</td>
+                </tr>
+                <tr class="hover:bg-brand-50/60 font-sans">
+                  <td class="py-2.5 px-3 font-semibold text-slate-900">Ducati Caracas</td>
+                  <td class="text-center font-bold text-red-600 font-mono">40</td>
+                  <td class="text-right font-mono">$826,170.18</td>
+                  <td class="text-right font-mono">$586,405.99</td>
+                  <td class="text-right font-mono">$270,996.65</td>
+                  <td class="text-right font-mono font-bold text-slate-900">$857,402.64</td>
+                  <td class="text-right font-mono text-emerald-600">$242,955.88</td>
+                  <td class="text-right font-mono text-emerald-600">$85,353.92</td>
+                  <td class="text-right font-mono font-bold text-emerald-600">$328,309.80</td>
+                </tr>
+                <tr class="hover:bg-brand-50/60 font-sans">
+                  <td class="py-2.5 px-3 font-semibold text-slate-900">Otros (Consorcios)</td>
+                  <td class="text-center font-bold text-indigo-600 font-mono">18</td>
+                  <td class="text-right font-mono">$2,056,560.97</td>
+                  <td class="text-right font-mono">$957,150.51</td>
+                  <td class="text-right font-mono">$411,072.56</td>
+                  <td class="text-right font-mono font-bold text-slate-900">$1,368,223.07</td>
+                  <td class="text-right font-mono text-emerald-600">$1,080,478.05</td>
+                  <td class="text-right font-mono text-emerald-600">$252,347.92</td>
+                  <td class="text-right font-mono font-bold text-emerald-600">$1,332,825.97</td>
+                </tr>
+                <tr class="hover:bg-brand-50/60 font-sans">
+                  <td class="py-2.5 px-3 font-semibold text-slate-900">Xiro</td>
+                  <td class="text-center font-bold text-amber-600 font-mono">15</td>
+                  <td class="text-right font-mono">$321,960.00</td>
+                  <td class="text-right font-mono">$305,837.40</td>
+                  <td class="text-right font-mono">$91,939.41</td>
+                  <td class="text-right font-mono font-bold text-slate-900">$397,776.81</td>
+                  <td class="text-right font-mono text-emerald-600">$16,045.28</td>
+                  <td class="text-right font-mono text-emerald-600">$5,012.65</td>
+                  <td class="text-right font-mono font-bold text-emerald-600">$21,057.93</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="border-t border-brand-300 font-bold bg-brand-50/80 text-slate-900 font-mono text-xs">
+                  <td class="py-2.5 px-3 font-sans">TOTALES</td>
+                  <td class="text-center text-brand-700">478</td>
+                  <td class="text-right font-mono">$13,720,060.67</td>
+                  <td class="text-right font-mono">$10,066,942.72</td>
+                  <td class="text-right font-mono">$8,185,286.99</td>
+                  <td class="text-right font-mono text-brand-800 font-black">$18,252,229.71</td>
+                  <td class="text-right font-mono text-emerald-600">$3,636,832.62</td>
+                  <td class="text-right font-mono text-emerald-600">$1,571,365.76</td>
+                  <td class="text-right font-mono text-emerald-600 font-black">$5,208,198.38</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <!-- TABLA DE SALDOS EN MORA POR CLIENTE (18 CLIENTES REALES DEL EXCEL) -->
+        <div class="glass-card rounded-2xl p-5 border border-rose-200">
+          <div class="flex justify-between items-center mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Detalle de Saldos en Mora por Cliente</h3>
+              <p class="text-xs text-slate-500">18 expedientes con retrasos registrados en el libro contable ($89,821.97 USD)</p>
+            </div>
+            <span class="text-xs bg-rose-100 text-rose-700 font-bold px-2.5 py-1 rounded-lg">Mora 0.48% Cartera</span>
+          </div>
+          <div class="overflow-x-auto custom-scrollbar max-h-72">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-brand-200 text-slate-600 uppercase font-semibold text-[10px] bg-rose-50/50">
+                  <th class="py-2 px-3">Cliente Deudor</th>
+                  <th class="py-2 px-3 text-right">Saldo en Mora ($ USD)</th>
+                  <th class="py-2 px-3 text-center">Estatus Cobranza</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-brand-100 text-slate-700">
+                <tr><td class="py-1.5 px-3 font-semibold text-slate-900">Hector Luis Velazquez Bravo</td><td class="py-1.5 px-3 text-right font-mono font-bold text-rose-600">$32,801.14</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 text-[10px] font-semibold">Crítico</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-semibold text-slate-900">Jose Alberto Rosales Donis</td><td class="py-1.5 px-3 text-right font-mono font-bold text-rose-600">$12,041.66</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 text-[10px] font-semibold">Crítico</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-semibold text-slate-900">Denny Jose Villamizar Rojas</td><td class="py-1.5 px-3 text-right font-mono font-bold text-rose-600">$11,526.52</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 text-[10px] font-semibold">Crítico</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Cesar Andres Fernandez Castillo</td><td class="py-1.5 px-3 text-right font-mono font-bold text-amber-600">$5,526.14</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px]">En Gestión</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Jose Gregorio Mendoza Rondon</td><td class="py-1.5 px-3 text-right font-mono font-bold text-amber-600">$4,410.49</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px]">En Gestión</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Eliezer Antonio Dominguez</td><td class="py-1.5 px-3 text-right font-mono font-bold text-amber-600">$3,612.01</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px]">En Gestión</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Wladimir Jose Caceres</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$2,695.39</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Guillermo Meneses Garcia</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$2,685.40</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Adilimar Del Valle Esparragoza</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$2,411.32</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Fabrica y Taller Faveal</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$2,304.44</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Sergio Alejandro Utrera</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$2,084.13</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Irwins Alan Monroy</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$1,797.63</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Leonardo Jose Lamas</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$1,644.00</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Guillermo Enrique Machado</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$1,342.70</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Henesis Mariecmer Blanco</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$1,071.22</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Edgar Eteward Carrasquel</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$849.32</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Fabiana Andrea Rondon</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$754.09</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+                <tr><td class="py-1.5 px-3 font-medium text-slate-900">Jose Antonio Albani</td><td class="py-1.5 px-3 text-right font-mono text-slate-700">$264.37</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">Seguimiento</span></td></tr>
+              </tbody>
+              <tfoot>
+                <tr class="border-t border-rose-300 font-bold bg-rose-50 text-slate-900 text-xs font-mono">
+                  <td class="py-2 px-3 font-sans">Total Muestra Saldos en Mora</td>
+                  <td class="py-2 px-3 text-right text-rose-700 font-black">$89,821.97</td>
+                  <td class="py-2 px-3 text-center text-slate-500 font-sans">18 Clientes</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: ADMINISTRACIÓN & XIRO (EXACTO EXCEL) -->
+    <!-- ========================================== -->
+    <section id="view-administracion" class="hidden space-y-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-white via-sky-50 to-blue-100 p-6 rounded-2xl border border-brand-200 shadow-sm">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-cyan-600">Ventas Seminuevos & Seminuevos</span>
+          <h2 class="text-2xl font-bold font-heading text-slate-900">Administración & Reporte de Ventas XIRO</h2>
+          <p class="text-xs text-slate-500">Métricas exactas del Excel: Utilidad bruta $74,297 USD, comisiones $39,267 USD, ganancia neta $21,760 USD</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <span class="text-xs text-slate-500 block font-medium">Ganancia Neta Final</span>
+            <span class="text-xl md:text-2xl font-black text-emerald-600 font-mono">$21,760 USD</span>
+          </div>
+          <div class="h-10 w-px bg-brand-200"></div>
+          <div class="text-right">
+            <span class="text-xs text-slate-500 block font-medium">Carros Vendidos</span>
+            <span class="text-xl md:text-2xl font-black text-brand-700">39 Unidades</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Carros Vendidos XIRO</span>
+          <span class="text-2xl font-black text-slate-900 mt-1 block">39 Vehículos</span>
+          <span class="text-xs text-brand-600 mt-1 inline-block font-semibold">100% liquidados</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Utilidad Bruta Total</span>
+          <span class="text-2xl font-black text-slate-900 mt-1 block font-mono">$74,297 USD</span>
+          <span class="text-xs text-brand-600 mt-1 inline-block font-semibold">Margen bruto en ventas</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Comisiones Comerciales</span>
+          <span class="text-2xl font-black text-amber-600 mt-1 block font-mono">$39,267 USD</span>
+          <span class="text-xs text-amber-700 mt-1 inline-block font-semibold">Fuerza comercial</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-emerald-200">
+          <span class="text-xs text-slate-500 block font-medium">Ganancia Neta Final</span>
+          <span class="text-2xl font-black text-emerald-600 mt-1 block font-mono">$21,760 USD</span>
+          <span class="text-xs text-emerald-700 mt-1 inline-block font-semibold">Margen neto operativo</span>
+        </div>
+      </div>
+
+      <!-- GRAFICOS Y CONTROL DE INVENTARIO XIRO -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Estructura Financiera Ventas XIRO</h3>
+              <p class="text-xs text-slate-500">Utilidad Bruta vs Comisiones vs Ganancia Neta ($ USD)</p>
+            </div>
+            <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded font-semibold">39 Autos</span>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chart-admin-cascada"></canvas>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Control de Inventario Actual (18 Unidades)</h3>
+              <p class="text-xs text-slate-500">Patio propio vs Consignación RNLT vs Consignación VW</p>
+            </div>
+            <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-semibold">Stock Físico</span>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chart-admin-inventario"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLA DE CONTROL DE INVENTARIO EXACTO DEL EXCEL -->
+      <div class="glass-card rounded-2xl p-5 border border-brand-200">
+        <h3 class="font-bold text-base text-slate-800 mb-3">Detalle del Inventario Disponible y en Consignación</h3>
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-brand-200 text-slate-600 uppercase font-semibold text-[10px] bg-brand-50">
+                <th class="py-2.5 px-3">Ubicación / Modalidad</th>
+                <th class="py-2.5 px-3 text-center">Unidades</th>
+                <th class="py-2.5 px-3">Modelos Físicos en Existencia</th>
+                <th class="py-2.5 px-3 text-right">Estatus Comercial</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-brand-100 text-slate-700">
+              <tr class="hover:bg-brand-50/60"><td class="py-2.5 px-3 font-semibold text-slate-900">Patio Propio (XIRO)</td><td class="text-center font-bold text-brand-700 font-mono">9</td><td class="text-slate-600">Logan Zen Gris (2 Disp.), Kardian MT Cassiope y Negro (2 Disp.), Oroch Gris Topacio (1 Disp.), Flota General</td><td class="text-right"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Disponible Inmediato</span></td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2.5 px-3 font-semibold text-slate-900">Consignación RNLT</td><td class="text-center font-bold text-cyan-700 font-mono">8</td><td class="text-slate-600">Renault Stepway (2 Consignación), Renault Logan (2 Consignación), Unidades Varias</td><td class="text-right"><span class="px-2 py-0.5 rounded bg-brand-100 text-brand-800 font-bold">Consignación Activa</span></td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2.5 px-3 font-semibold text-slate-900">Consignación VW</td><td class="text-center font-bold text-slate-700 font-mono">1</td><td class="text-slate-600">Volkswagen Seminuevo en exhibición Chacao</td><td class="text-right"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">Consignación Activa</span></td></tr>
+            </tbody>
+            <tfoot>
+              <tr class="border-t border-brand-300 font-bold bg-brand-50/80 text-slate-900">
+                <td class="py-2.5 px-3">Total Inventario Controlado</td>
+                <td class="text-center text-brand-800 font-mono font-black">18 Unidades</td>
+                <td colspan="2" class="text-slate-500 font-normal">Patio (9) + Consignación RNLT (8) + Consignación VW (1)</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 6: SEGUROS AREKUNA (EXACTO EXCEL) -->
+    <!-- ========================================== -->
+    <section id="view-arekuna" class="hidden space-y-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-white via-sky-50 to-blue-100 p-6 rounded-2xl border border-brand-200 shadow-sm">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-cyan-600">Corretaje de Seguros & Coberturas</span>
+          <h2 class="text-2xl font-bold font-heading text-slate-900">Seguros Arekuna</h2>
+          <p class="text-xs text-slate-500">Métricas exactas del Excel: 62 pólizas Octubre (Auto 40, Vida 22), primas $20,933.93, comisiones 25% y 42 siniestros</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <span class="text-xs text-slate-500 block font-medium">Emisiones Octubre</span>
+            <span class="text-xl md:text-2xl font-black text-brand-700">62 Pólizas</span>
+          </div>
+          <div class="h-10 w-px bg-brand-200"></div>
+          <div class="text-right">
+            <span class="text-xs text-slate-500 block font-medium">Comisión Total (25%)</span>
+            <span class="text-xl md:text-2xl font-black text-emerald-600 font-mono">$5,233.49 USD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TARJETAS EXACTAS DE AREKUNA -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Emisiones Octubre 2026</span>
+          <span class="text-2xl font-black text-slate-900 mt-1 block">62 Pólizas</span>
+          <span class="text-xs text-brand-600 mt-1 inline-block font-semibold">Auto: 40 | Vida: 22</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Total Primas (38 Pólizas proc.)</span>
+          <span class="text-2xl font-black text-brand-700 mt-1 block font-mono">$20,933.93</span>
+          <span class="text-xs text-slate-500 mt-1 inline-block font-mono">Comisión: $5,233.49 (25%)</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-brand-200">
+          <span class="text-xs text-slate-500 block font-medium">Renovaciones Octubre</span>
+          <span class="text-2xl font-black text-cyan-600 mt-1 block">31 Pólizas</span>
+          <span class="text-xs text-emerald-600 mt-1 inline-block font-semibold">11 Cobradas | 20 Pendientes</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 border border-amber-200">
+          <span class="text-xs text-slate-500 block font-medium">Siniestros (Sept - Oct)</span>
+          <span class="text-2xl font-black text-amber-600 mt-1 block">42 Casos</span>
+          <span class="text-xs text-amber-700 mt-1 inline-block font-semibold">Renault 35 | VW 7</span>
+        </div>
+      </div>
+
+      <!-- GRAFICOS DE ASEGURADORAS Y SINIESTROS -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Emisiones Octubre por Aseguradora y Estatus</h3>
+              <p class="text-xs text-slate-500">Seguros Caracas (27) vs Seguros Oceánica (35)</p>
+            </div>
+            <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded font-semibold">Total 62</span>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chart-arekuna-emisiones"></canvas>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border border-brand-200">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-base text-slate-800">Siniestros Pendientes (Sept - Oct 2026)</h3>
+              <p class="text-xs text-slate-500">42 casos: Procesados, En Proceso y Pendientes</p>
+            </div>
+            <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-semibold">Renault vs VW</span>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chart-arekuna-siniestros-marca"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLA DETALLADA DE PRIMAS Y COMISIONES DEL EXCEL -->
+      <div class="glass-card rounded-2xl p-5 border border-brand-200">
+        <h3 class="font-bold text-base text-slate-800 mb-3">Detalle de Primas y Comisiones por Aseguradora</h3>
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-brand-200 text-slate-600 uppercase font-semibold text-[10px] bg-brand-50">
+                <th class="py-2.5 px-3">Aseguradora</th>
+                <th class="py-2.5 px-3">Estatus</th>
+                <th class="py-2.5 px-3 text-center">Pólizas</th>
+                <th class="py-2.5 px-3 text-right">Prima ($ USD)</th>
+                <th class="py-2.5 px-3 text-center">% Comisión</th>
+                <th class="py-2.5 px-3 text-right">Comisión Arekuna ($ USD)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-brand-100 text-slate-700 font-mono text-[11px]">
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-semibold text-slate-900">Seguros Caracas</td><td class="text-emerald-700 font-medium">Cobrado</td><td class="text-center font-bold text-brand-700 font-mono">5</td><td class="text-right font-mono">$3,050.27</td><td class="text-center">25.0%</td><td class="text-right font-mono font-bold text-emerald-600">$762.56</td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-semibold text-slate-900">Seguros Caracas</td><td class="text-amber-700 font-medium">Pendiente</td><td class="text-center font-bold text-brand-700 font-mono">11</td><td class="text-right font-mono">$6,445.37</td><td class="text-center">25.0%</td><td class="text-right font-mono font-bold text-amber-600">$1,611.36</td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-semibold text-slate-900">Seguros Oceánica</td><td class="text-emerald-700 font-medium">Cobrado</td><td class="text-center font-bold text-cyan-700 font-mono">7</td><td class="text-right font-mono">$4,328.63</td><td class="text-center">25.0%</td><td class="text-right font-mono font-bold text-emerald-600">$1,082.16</td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-semibold text-slate-900">Seguros Oceánica</td><td class="text-amber-700 font-medium">Pendiente</td><td class="text-center font-bold text-cyan-700 font-mono">15</td><td class="text-right font-mono">$7,109.66</td><td class="text-center">25.0%</td><td class="text-right font-mono font-bold text-amber-600">$1,777.41</td></tr>
+            </tbody>
+            <tfoot>
+              <tr class="border-t border-brand-300 font-bold bg-brand-50/80 text-slate-900 font-mono text-xs">
+                <td class="py-2.5 px-3 font-sans" colspan="2">TOTAL PROCESADAS</td>
+                <td class="text-center text-brand-700">38</td>
+                <td class="text-right font-mono text-slate-900 font-black">$20,933.93</td>
+                <td class="text-center text-slate-500 font-sans">25.0%</td>
+                <td class="text-right font-mono text-emerald-600 font-black">$5,233.49</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 7: GESTIÓN INTEGRAL (CUMPLIMIENTO, LEGAL, SERVICIOS, MERCADEO, PROCESOS, RRHH) -->
+    <!-- ========================================== -->
+    <section id="view-gestion" class="hidden space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-white via-sky-50 to-blue-100 p-6 rounded-2xl border border-brand-200 shadow-sm">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-brand-600">Sinergia & Soporte Corporativo D1</span>
+          <h2 class="text-2xl font-bold font-heading text-slate-900">Gestión Integral</h2>
+          <p class="text-xs text-slate-500">Datos fieles del libro: Cumplimiento, Legal, Servicios Generales, Mercadeo, Procesos y Gestión Humana</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-3.5 py-1.5 rounded-xl bg-white border border-brand-200 text-xs font-semibold text-brand-700 shadow-sm">6 Departamentos Consolidados</span>
+        </div>
+      </div>
+
+      <!-- 1. CUMPLIMIENTO -->
+      <div class="glass-card rounded-2xl p-6 border border-brand-200 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-brand-100">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-100 border border-brand-300 flex items-center justify-center text-brand-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-900">1. Unidad de Cumplimiento & Riesgos</h3>
+              <p class="text-xs text-slate-500">500 clientes Carapaya analizados (432 activos) | 8 casos por analizar (VAS 4, RNLT 2, XIRO 2) | 1 Rechazado</p>
+            </div>
+          </div>
+          <button onclick="openModalCumplimiento()" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition-all active:scale-95">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>📄 Ver Operaciones Semana 23 al 28 Octubre</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="space-y-3">
+            <div class="p-3.5 rounded-xl bg-white border border-brand-200 shadow-sm">
+              <span class="text-slate-500 text-xs block font-medium">Clientes Carapaya Analizados</span>
+              <span class="text-2xl font-black text-slate-900">500 Clientes</span>
+              <span class="text-xs text-emerald-600 font-semibold mt-0.5 block">432 Clientes Activos (86.4%)</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white border border-brand-200 shadow-sm">
+              <span class="text-slate-500 text-xs block font-medium">Pendientes de la Semana</span>
+              <span class="text-2xl font-black text-amber-600">8 Casos</span>
+              <span class="text-xs text-slate-500 mt-0.5 block">VAS (4), RNLT (2), XIRO (2), DUCATI (0), Rechazado (1)</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white border border-brand-200 shadow-sm">
+              <span class="text-slate-500 text-xs block font-medium">Semana 23 al 28 Octubre</span>
+              <span class="text-2xl font-black text-cyan-600 font-mono">$283,256 Financiado</span>
+              <span class="text-xs text-brand-700 font-semibold mt-0.5 block">11 Operaciones | $357,496 en vehículos</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 h-64 relative">
+            <canvas id="chart-cumplimiento-status"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. LEGAL -->
+      <div class="glass-card rounded-2xl p-6 border border-brand-200 space-y-4">
+        <div class="flex items-center gap-3 pb-3 border-b border-brand-100">
+          <div class="w-10 h-10 rounded-xl bg-indigo-100 border border-indigo-300 flex items-center justify-center text-indigo-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg text-slate-900">2. Consultoría Legal & Cobranzas</h3>
+            <p class="text-xs text-slate-500">46 Documentos procesados, 22 Actas, 23 Addendums, 10 Contratos laborales | Cobranzas: $58,072.80 recuperado</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-semibold text-sm text-slate-800 mb-2">Instrumentos Jurídicos Elaborados</h4>
+            <div class="h-60 relative">
+              <canvas id="chart-legal-documentos"></canvas>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-semibold text-sm text-slate-800 mb-2">Cobranzas: Monto Recuperado vs En Proceso</h4>
+            <div class="h-60 relative">
+              <canvas id="chart-legal-cobranzas"></canvas>
+            </div>
+            <div class="mt-3 flex justify-between text-xs text-slate-600 pt-2 border-t border-brand-100">
+              <span>Conflictos Gestionados: <strong>4 de 5 (75%)</strong></span>
+              <span>Visitas Oficiales Realizadas: <strong>8 Visitas</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. SERVICIOS GENERALES (12 INMUEBLES EXACTOS) -->
+      <div class="glass-card rounded-2xl p-6 border border-brand-200 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-brand-100">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-cyan-100 border border-cyan-300 flex items-center justify-center text-cyan-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-900">3. Servicios Generales (Mantenimiento Oct-Dic 2026)</h3>
+              <p class="text-xs text-slate-500">Programado: 126 hrs | Ejecutado: 113.4 hrs (90% Cumplimiento Global, En Meta)</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-xl bg-emerald-100 text-emerald-800 font-bold text-xs border border-emerald-200">113.4 hrs / 126 hrs (90%)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="h-64 relative">
+            <canvas id="chart-servicios-horas"></canvas>
+          </div>
+          <div class="overflow-x-auto custom-scrollbar max-h-64">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-brand-200 text-slate-600 uppercase font-semibold text-[10px] bg-brand-50">
+                  <th class="py-2 px-2.5">Inmueble / Sede</th>
+                  <th class="py-2 px-2.5 text-center">Prog.</th>
+                  <th class="py-2 px-2.5 text-center">Ejec.</th>
+                  <th class="py-2 px-2.5 text-right">% Cumpl.</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-brand-100 text-slate-700">
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">Casa 37</td><td class="text-center">23h</td><td class="text-center text-brand-700 font-bold">24.9h</td><td class="text-right text-emerald-600 font-bold">108.3%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">CASA 27</td><td class="text-center">12h</td><td class="text-center text-brand-700 font-bold">9.7h</td><td class="text-right text-emerald-600 font-bold">80.8%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">A16</td><td class="text-center">5h</td><td class="text-center text-brand-700 font-bold">4.0h</td><td class="text-right text-emerald-600 font-bold">80.0%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">A418</td><td class="text-center">5h</td><td class="text-center text-brand-700 font-bold">4.0h</td><td class="text-right text-emerald-600 font-bold">80.0%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">Marlinraptor</td><td class="text-center">11h</td><td class="text-center text-brand-700 font-bold">8.0h</td><td class="text-right text-emerald-600 font-bold">72.7%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">4K</td><td class="text-center">5h</td><td class="text-center text-brand-700 font-bold">3.5h</td><td class="text-right text-emerald-600 font-bold">70.0%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">4F</td><td class="text-center">5h</td><td class="text-center text-brand-700 font-bold">5.0h</td><td class="text-right text-emerald-600 font-bold">100.0%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">CASA 2720</td><td class="text-center">4h</td><td class="text-center text-brand-700 font-bold">4.0h</td><td class="text-right text-emerald-600 font-bold">100.0%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">HANGAR</td><td class="text-center">9h</td><td class="text-center text-brand-700 font-bold">8.0h</td><td class="text-right text-emerald-600 font-bold">88.9%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">EDIFICIO NENA</td><td class="text-center">32h</td><td class="text-center text-brand-700 font-bold">28.3h</td><td class="text-right text-emerald-600 font-bold">88.4%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">VAS VEN CHACAO</td><td class="text-center">8h</td><td class="text-center text-brand-700 font-bold">8.0h</td><td class="text-right text-emerald-600 font-bold">100.0%</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-medium text-slate-900">CASA 2721</td><td class="text-center">7h</td><td class="text-center text-brand-700 font-bold">6.0h</td><td class="text-right text-emerald-600 font-bold">85.7%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. MERCADEO -->
+      <div class="glass-card rounded-2xl p-6 border border-brand-200 space-y-4">
+        <div class="flex items-center gap-3 pb-3 border-b border-brand-100">
+          <div class="w-10 h-10 rounded-xl bg-pink-100 border border-pink-300 flex items-center justify-center text-pink-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg text-slate-900">4. Mercadeo & Activaciones (Semana 43)</h3>
+            <p class="text-xs text-slate-500">617 Leads en Redes Sociales (Renault 485 - 78.6% | Volkswagen 132 - 21.4%) y estatus de eventos</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-semibold text-sm text-slate-800 mb-2">Leads RRSS Semana 43 (617 Totales)</h4>
+            <div class="h-60 relative">
+              <canvas id="chart-mercadeo-leads"></canvas>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h4 class="font-semibold text-sm text-slate-800 mb-2">Estatus de Eventos y Alianzas (Excel Real)</h4>
+            <div class="space-y-2 text-xs">
+              <div class="p-3 rounded-xl bg-white border border-brand-200 flex justify-between items-center shadow-sm">
+                <div>
+                  <span class="font-bold text-slate-900 block">Instituto Escuela</span>
+                  <span class="text-slate-500">Exhibición institucional</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 font-semibold">Pendiente (Pregira)</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white border border-brand-200 flex justify-between items-center shadow-sm">
+                <div>
+                  <span class="font-bold text-slate-900 block">C.C. Cerro Verde</span>
+                  <span class="text-slate-500">Activación y exhibición</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-cyan-100 text-cyan-800 font-semibold">En Coordinación (20-22 Nov)</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white border border-brand-200 flex justify-between items-center shadow-sm">
+                <div>
+                  <span class="font-bold text-slate-900 block">Ducati Motorrad</span>
+                  <span class="text-slate-500">Ruta y experiencia</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-brand-100 text-brand-800 font-semibold">En Coordinación (26-28 Nov)</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white border border-brand-200 flex justify-between items-center shadow-sm">
+                <div>
+                  <span class="font-bold text-slate-900 block">BNC (Banco Nacional de Crédito)</span>
+                  <span class="text-slate-500">Jornada crediticia</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Pendiente</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white border border-brand-200 flex justify-between items-center shadow-sm">
+                <div>
+                  <span class="font-bold text-slate-900 block">Ducati / Banco Plaza</span>
+                  <span class="text-slate-500">Alianza comercial</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Pendiente entrega tarjetas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. PROCESOS (DATOS REALES DEL EXCEL) -->
+      <div class="glass-card rounded-2xl p-6 border border-brand-200 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-brand-100">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-sky-100 border border-sky-300 flex items-center justify-center text-sky-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-900">5. Organización & Estandarización de Procesos</h3>
+              <p class="text-xs text-slate-500">Dimensionamiento de carga laboral en Cobranzas y reducción drástica de tiempos operativos</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-xl bg-emerald-100 text-emerald-800 font-bold text-xs border border-emerald-200">89% Tiempo Optimizado</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-white border border-brand-200 shadow-sm">
+            <span class="text-slate-500 text-xs block font-medium">Tiempo Proceso Cobranzas Actual</span>
+            <span class="text-2xl font-black text-rose-600 mt-1 block">54.6 h / mes</span>
+            <span class="text-xs text-rose-600 font-semibold">Alta sobrecarga operativa</span>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-emerald-200 shadow-sm">
+            <span class="text-slate-500 text-xs block font-medium">Tiempo Proceso Optimizado</span>
+            <span class="text-2xl font-black text-emerald-600 mt-1 block">5.8 h / mes</span>
+            <span class="text-xs text-emerald-700 font-semibold">Reducción del 89.4%</span>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-brand-200 shadow-sm">
+            <span class="text-slate-500 text-xs block font-medium">Plan de Acción Organizacional</span>
+            <span class="text-lg font-bold text-slate-900 mt-1 block">Estudio de Cargas</span>
+            <span class="text-xs text-slate-500">Cobranzas, Operaciones y SSGG</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-semibold text-sm text-slate-800 mb-2">Reducción de Tiempo de Proceso Mensual (Horas)</h4>
+            <div class="h-60 relative">
+              <canvas id="chart-procesos-tiempos"></canvas>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h4 class="font-semibold text-sm text-slate-800 mb-2">Dimensionamiento de Carga Laboral - Cobranzas (Excel Real)</h4>
+            <div class="overflow-x-auto custom-scrollbar">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="border-b border-brand-200 text-slate-600 uppercase font-semibold text-[10px] bg-brand-50">
+                    <th class="py-2 px-3">Rol / Cargo</th>
+                    <th class="py-2 px-3 text-center">Escenario Actual</th>
+                    <th class="py-2 px-3 text-center">Escenario Optimizado</th>
+                    <th class="py-2 px-3 text-right">Diagnóstico</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-brand-100 text-slate-700">
+                  <tr><td class="py-2 px-3 font-semibold text-slate-900">Coordinador</td><td class="text-center font-bold text-rose-600">2.03</td><td class="text-center font-bold text-amber-600">2.03</td><td class="text-right text-rose-600 font-semibold">Sobrecargado</td></tr>
+                  <tr><td class="py-2 px-3 font-semibold text-slate-900">Especialista</td><td class="text-center font-bold text-rose-600">1.45</td><td class="text-center font-bold text-emerald-600">1.01</td><td class="text-right text-emerald-600 font-semibold">Balanceado</td></tr>
+                  <tr class="bg-brand-50/60 font-bold"><td class="py-2 px-3 text-slate-900">Total Departamento</td><td class="text-center text-rose-700">1.74</td><td class="text-center text-emerald-700">1.52</td><td class="text-right text-brand-700">Mejora Sustancial</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. GESTIÓN HUMANA (DATOS REALES DEL EXCEL) -->
+      <div class="glass-card rounded-2xl p-6 border border-brand-200 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-brand-100">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-900">6. Gestión Humana & Nómina</h3>
+              <p class="text-xs text-slate-500">Gasto total USD 88,020 (Efectivo $78,770 + Creska $9,250) y avances institucionales</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-xl bg-emerald-100 text-emerald-800 font-bold text-xs border border-emerald-200 font-mono">Gasto: $88,020 USD</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-white border border-brand-200 shadow-sm">
+            <span class="text-slate-500 text-xs block font-medium">Pagos en Efectivo</span>
+            <span class="text-2xl font-black text-slate-900 mt-1 block font-mono">$78,770 USD</span>
+            <span class="text-xs text-slate-500">Nómina presencial</span>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-brand-200 shadow-sm">
+            <span class="text-slate-500 text-xs block font-medium">Abono en Creska</span>
+            <span class="text-2xl font-black text-cyan-600 mt-1 block font-mono">$9,250 USD</span>
+            <span class="text-xs text-emerald-600 font-semibold">1er abono ejecutado con éxito</span>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-emerald-200 shadow-sm">
+            <span class="text-slate-500 text-xs block font-medium">Gasto USD Personal Activo</span>
+            <span class="text-2xl font-black text-emerald-600 mt-1 block font-mono">$88,020 USD</span>
+            <span class="text-xs text-brand-700 font-semibold">Total nómina del mes</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-semibold text-sm text-slate-800 mb-2">Composición del Gasto de Nómina</h4>
+            <div class="h-60 relative">
+              <canvas id="chart-rrhh-gasto"></canvas>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h4 class="font-semibold text-sm text-slate-800 mb-2">Avances y Novedades Estratégicas (Excel Real)</h4>
+            <div class="space-y-2 text-xs">
+              <div class="p-3 rounded-xl bg-white border border-brand-200 shadow-sm">
+                <span class="font-bold text-brand-800 block">Esquema de Tasas de Empleados</span>
+                <p class="text-slate-600">Migración completa de colaboradores con deuda activa al nuevo esquema preferencial corporativo.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-white border border-brand-200 shadow-sm">
+                <span class="font-bold text-brand-800 block">Entrega de Vehículos al Personal</span>
+                <p class="text-slate-600">Con respaldo de Cumplimiento y coordinación Comercial/Operaciones, entrega exitosa de vehículos a Johanna Arellano y Alexandra Navas.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-white border border-brand-200 shadow-sm">
+                <span class="font-bold text-brand-800 block">Piloto App Dámelo (Rodrigo Arellano)</span>
+                <p class="text-slate-600">Puesta en marcha del piloto para créditos a nómina con tasa del 5% mensual (estructura sustancialmente más beneficiosa frente al esquema anterior de Ubii Pagos).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL: KILOMETRAJE POSVENTA (392 SERVICIOS) -->
+  <!-- ========================================== -->
+  <div id="modal-kilometraje" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-brand-300 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 shadow-2xl relative">
+      <div class="flex justify-between items-start pb-4 border-b border-brand-200">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-cyan-600">Análisis Técnico de Posventa</span>
+          <h3 class="text-xl md:text-2xl font-bold text-slate-900 font-heading">Distribución de Servicios por Kilometraje</h3>
+          <p class="text-xs text-slate-500">Desglose exacto de los 392 registros de mantenimiento del libro de Excel</p>
+        </div>
+        <button onclick="closeModalKilometraje()" class="text-slate-400 hover:text-slate-700 p-2 rounded-xl bg-slate-100 border border-slate-200 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="mt-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="h-64 relative">
+            <canvas id="chart-modal-km-bar"></canvas>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chart-modal-km-pie"></canvas>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-brand-200 text-slate-600 uppercase font-semibold text-[11px] bg-brand-50">
+                <th class="py-2.5 px-3">Intervalo de Kilometraje</th>
+                <th class="py-2.5 px-3 text-center">Cantidad Servicios</th>
+                <th class="py-2.5 px-3 text-right">Porcentaje (%)</th>
+                <th class="py-2.5 px-3">Rutina Mecánica Asociada</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-brand-100 text-slate-700">
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">5,000 KM</td><td class="py-2 px-3 text-center font-bold text-brand-700 font-mono">141</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">35.97%</td><td class="py-2 px-3 text-slate-500">Mantenimiento preventivo principal de rodaje</td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">1,000 KM</td><td class="py-2 px-3 text-center font-bold text-cyan-600 font-mono">139</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">35.46%</td><td class="py-2 px-3 text-slate-500">Revisión de garantía inicial y ajuste de torque</td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">10,000 KM</td><td class="py-2 px-3 text-center font-bold text-sky-600 font-mono">65</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">16.58%</td><td class="py-2 px-3 text-slate-500">Servicio intermedio, rotación neumáticos y filtros</td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">15,000 KM</td><td class="py-2 px-3 text-center font-bold text-indigo-600 font-mono">21</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">5.36%</td><td class="py-2 px-3 text-slate-500">Afinación, frenos y fluidos</td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">20,000 KM</td><td class="py-2 px-3 text-center font-bold text-violet-600 font-mono">17</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">4.34%</td><td class="py-2 px-3 text-slate-500">Servicio integral de garantía</td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">25,000 KM</td><td class="py-2 px-3 text-center font-bold text-slate-600 font-mono">6</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">1.53%</td><td class="py-2 px-3 text-slate-500">Revisión general de tren delantero</td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">20,000 KM (Adic.)</td><td class="py-2 px-3 text-center font-bold text-slate-600 font-mono">1</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">0.26%</td><td class="py-2 px-3 text-slate-500">Mantenimiento especial programado</td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">30,000 KM</td><td class="py-2 px-3 text-center font-bold text-slate-600 font-mono">1</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">0.26%</td><td class="py-2 px-3 text-slate-500">Mantenimiento mayor y correas</td></tr>
+              <tr class="hover:bg-brand-50/60"><td class="py-2 px-3 font-semibold text-slate-900">35,000 KM</td><td class="py-2 px-3 text-center font-bold text-slate-600 font-mono">1</td><td class="py-2 px-3 text-right font-bold text-emerald-600 font-mono">0.26%</td><td class="py-2 px-3 text-slate-500">Mantenimiento extendido de flota</td></tr>
+            </tbody>
+            <tfoot>
+              <tr class="border-t border-brand-300 font-bold bg-brand-50 text-slate-900">
+                <td class="py-2.5 px-3">Total Servicios Muestreados</td>
+                <td class="py-2.5 px-3 text-center text-cyan-700 font-mono">392</td>
+                <td class="py-2.5 px-3 text-right text-emerald-600 font-mono">100.0%</td>
+                <td class="py-2.5 px-3 text-slate-600">Taller Autorizado</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-brand-200 flex justify-end">
+        <button onclick="closeModalKilometraje()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs shadow-md transition-all">
+          Cerrar Ventana
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: CUMPLIMIENTO SEMANA (11 CLIENTES REALES) -->
+  <!-- ========================================== -->
+  <div id="modal-cumplimiento" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-brand-300 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 shadow-2xl relative">
+      <div class="flex justify-between items-start pb-4 border-b border-brand-200">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-emerald-600">Semana del 23 al 28 de Octubre</span>
+          <h3 class="text-xl md:text-2xl font-bold text-slate-900 font-heading">Operaciones Liquidadas & Financiadas</h3>
+          <p class="text-xs text-slate-500">11 operaciones aprobadas por Cumplimiento ($357,496.03 en vehículos / $283,256 financiados)</p>
+        </div>
+        <button onclick="closeModalCumplimiento()" class="text-slate-400 hover:text-slate-700 p-2 rounded-xl bg-slate-100 border border-slate-200 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="mt-6 space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-brand-50 border border-brand-200">
+            <span class="text-slate-500 block">Total PVP Vehículos</span>
+            <span class="text-xl font-bold text-slate-900 mt-1 font-mono">$357,496.03</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-brand-50 border border-brand-200">
+            <span class="text-slate-500 block">Total Financiado</span>
+            <span class="text-xl font-bold text-brand-700 mt-1 font-mono">$283,256.00</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-brand-50 border border-brand-200">
+            <span class="text-slate-500 block">Inicial Promedio</span>
+            <span class="text-xl font-bold text-cyan-600 mt-1">9 de 11 con 0% Inicial</span>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-brand-200 text-slate-600 uppercase font-semibold text-[10px] bg-brand-50">
+                <th class="py-2.5 px-3">Cliente Aprobado</th>
+                <th class="py-2.5 px-3">Vehículo</th>
+                <th class="py-2.5 px-3 text-right">Precio Venta</th>
+                <th class="py-2.5 px-3 text-right">Monto Financiado</th>
+                <th class="py-2.5 px-3 text-center">% Inicial</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-brand-100 text-slate-700 font-mono text-[11px]">
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Victor Woaneyer Arias</td><td class="text-slate-600">Tera Comfortline</td><td class="text-right font-mono">$35,880.00</td><td class="text-right font-mono font-bold text-brand-700">$30,500.00</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Marcos Jose Perez</td><td class="text-slate-600">Tera Comfortline</td><td class="text-right font-mono">$35,880.00</td><td class="text-right font-mono font-bold text-brand-700">$14,380.00</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">53%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Jose Rafael Escobar</td><td class="text-slate-600">Tera Comfortline</td><td class="text-right font-mono">$35,880.00</td><td class="text-right font-mono font-bold text-brand-700">$30,500.00</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Leonardo Antonio Reyes</td><td class="text-slate-600">Virtus Trendline</td><td class="text-right font-mono">$30,500.00</td><td class="text-right font-mono font-bold text-brand-700">$25,000.00</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Maira Raquel Barajas</td><td class="text-slate-600">Kwid Iconic</td><td class="text-right font-mono">$22,571.03</td><td class="text-right font-mono font-bold text-brand-700">$18,534.00</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Liliana Veronica Guevara</td><td class="text-slate-600">Logan Zen</td><td class="text-right font-mono">$25,500.00</td><td class="text-right font-mono font-bold text-brand-700">$19,699.33</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">14%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Maria Isbelia Lozada</td><td class="text-slate-600">T-Cross</td><td class="text-right font-mono">$43,405.00</td><td class="text-right font-mono font-bold text-brand-700">$36,987.50</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Fernando Trujillo</td><td class="text-slate-600">Virtus Trendline</td><td class="text-right font-mono">$30,500.00</td><td class="text-right font-mono font-bold text-brand-700">$25,000.00</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Jesús Eduardo Abraham</td><td class="text-slate-600">Tera Comfortline</td><td class="text-right font-mono">$35,880.00</td><td class="text-right font-mono font-bold text-brand-700">$30,500.00</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Raimary Lisbeth Medina</td><td class="text-slate-600">Kardian Evolution</td><td class="text-right font-mono">$36,000.00</td><td class="text-right font-mono font-bold text-brand-700">$30,603.45</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+              <tr class="hover:bg-brand-50/60 font-sans"><td class="py-2 px-3 font-medium text-slate-900">Nairoby Alejandra Diaz</td><td class="text-slate-600">Logan Zen</td><td class="text-right font-mono">$25,500.00</td><td class="text-right font-mono font-bold text-brand-700">$21,551.72</td><td class="text-center"><span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">0%</span></td></tr>
+            </tbody>
+            <tfoot>
+              <tr class="border-t border-brand-300 font-bold bg-brand-50 text-slate-900 font-mono text-xs">
+                <td class="py-2.5 px-3 font-sans" colspan="2">TOTAL 11 EXPEDIENTES</td>
+                <td class="text-right font-mono">$357,496.03</td>
+                <td class="text-right font-mono text-emerald-600 font-black">$283,256.00</td>
+                <td class="text-center font-sans text-slate-500">-</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-brand-200 flex justify-end">
+        <button onclick="closeModalCumplimiento()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs shadow-md transition-all">
+          Cerrar Detalle
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="border-t border-brand-200 bg-white/80 py-4 px-4 lg:px-8 mt-12 text-center text-xs text-slate-500 no-print">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-500"></span>
+        <span class="font-medium text-slate-700">Resumen General D1 &copy; 2026</span>
+      </div>
+      <span>Corte Oficial al 02-11-2026 | Datos Extraídos de Excel Maestro</span>
+      <span class="text-brand-600 font-medium">Panel Ejecutivo de Alta Dirección</span>
+    </div>
+  </footer>
+
+  <!-- LÓGICA JAVASCRIPT & CHARTS -->
+  <script>
+    let activeTab = 'rnlt';
+    let isFinanzasUnlocked = false;
+    const charts = {};
+
+    const colors = {
+      blue1: '#0284c7',
+      blue2: '#0ea5e9',
+      blue3: '#38bdf8',
+      blue4: '#7dd3fc',
+      cyan: '#06b6d4',
+      emerald: '#10b981',
+      amber: '#f59e0b',
+      purple: '#8b5cf6',
+      grid: '#e2e8f0',
+      text: '#475569'
+    };
+
+    Chart.defaults.color = colors.text;
+    Chart.defaults.borderColor = colors.grid;
+    Chart.defaults.font.family = 'Inter, sans-serif';
+
+    function switchTab(tabId) {
+      // Re-bloqueo automático estricto de Finanzas si el usuario cambia a otra vista
+      if (tabId !== 'finanzas' && isFinanzasUnlocked) {
+        lockFinanzasQuietly();
+      }
+
+      activeTab = tabId;
+
+      const views = ['rnlt', 'vas', 'posventa', 'finanzas', 'administracion', 'gestion', 'arekuna'];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) el.classList.add('hidden');
+      });
+
+      const targetView = document.getElementById(`view-${tabId}`);
+      if (targetView) targetView.classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white', 'shadow-md', 'shadow-brand-500/25');
+        btn.classList.add('bg-white', 'text-slate-600', 'hover:text-brand-700', 'hover:bg-brand-50', 'border', 'border-brand-200');
+      });
+
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-brand-600', 'text-white', 'shadow-md', 'shadow-brand-500/25');
+        activeBtn.classList.remove('bg-white', 'text-slate-600', 'hover:bg-brand-50');
+      }
+
+      setTimeout(() => {
+        if (tabId === 'rnlt') initRnltCharts();
+        if (tabId === 'vas') initVasCharts();
+        if (tabId === 'posventa') initPosventaCharts();
+        if (tabId === 'finanzas' && isFinanzasUnlocked) initFinanzasCharts();
+        if (tabId === 'administracion') initAdministracionCharts();
+        if (tabId === 'gestion') initGestionCharts();
+        if (tabId === 'arekuna') initArekunaCharts();
+      }, 50);
+    }
+
+    function lockFinanzasQuietly() {
+      isFinanzasUnlocked = false;
+      const unlockedContent = document.getElementById('finanzas-unlocked-content');
+      const lockedScreen = document.getElementById('finanzas-locked-screen');
+      const pinInput = document.getElementById('pin-input');
+      const lockIcon = document.getElementById('lock-icon');
+
+      if (unlockedContent) unlockedContent.classList.add('hidden');
+      if (lockedScreen) lockedScreen.classList.remove('hidden');
+      if (pinInput) pinInput.value = '';
+      if (lockIcon) {
+        lockIcon.classList.remove('text-emerald-600');
+        lockIcon.classList.add('text-amber-500');
+      }
+    }
+
+    function handleFinanzasTabClick() {
+      switchTab('finanzas');
+      if (!isFinanzasUnlocked) {
+        document.getElementById('finanzas-locked-screen').classList.remove('hidden');
+        document.getElementById('finanzas-unlocked-content').classList.add('hidden');
+        const pinInput = document.getElementById('pin-input');
+        if (pinInput) {
+          pinInput.value = '';
+          pinInput.focus();
+        }
+        document.getElementById('pin-error-msg').classList.add('hidden');
+      }
+    }
+
+    function verifyPin() {
+      const pin = document.getElementById('pin-input').value.trim();
+      if (pin === '0000') {
+        isFinanzasUnlocked = true;
+        document.getElementById('finanzas-locked-screen').classList.add('hidden');
+        document.getElementById('finanzas-unlocked-content').classList.remove('hidden');
+        
+        const lockIcon = document.getElementById('lock-icon');
+        if (lockIcon) {
+          lockIcon.classList.remove('text-amber-500');
+          lockIcon.classList.add('text-emerald-600');
+        }
+
+        setTimeout(() => {
+          initFinanzasCharts();
+        }, 50);
+      } else {
+        document.getElementById('pin-error-msg').classList.remove('hidden');
+        document.getElementById('pin-input').value = '';
+        document.getElementById('pin-input').focus();
+      }
+    }
+
+    function lockFinanzas() {
+      lockFinanzasQuietly();
+      switchTab('rnlt');
+    }
+
+    function openModalKilometraje() {
+      document.getElementById('modal-kilometraje').classList.remove('hidden');
+      setTimeout(() => {
+        initModalKmCharts();
+      }, 60);
+    }
+
+    function closeModalKilometraje() {
+      document.getElementById('modal-kilometraje').classList.add('hidden');
+    }
+
+    function openModalCumplimiento() {
+      document.getElementById('modal-cumplimiento').classList.remove('hidden');
+    }
+
+    function closeModalCumplimiento() {
+      document.getElementById('modal-cumplimiento').classList.add('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const pinInput = document.getElementById('pin-input');
+      if (pinInput) {
+        pinInput.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') verifyPin();
+        });
+      }
+      switchTab('rnlt');
+    });
+
+    function createOrUpdateChart(id, config) {
+      if (charts[id]) {
+        charts[id].destroy();
+      }
+      const ctx = document.getElementById(id);
+      if (ctx) {
+        charts[id] = new Chart(ctx, config);
+      }
+    }
+
+    // 1. RNLT CHARTS (DATOS EXACTOS DEL EXCEL)
+    function initRnltCharts() {
+      // Vendedores
+      createOrUpdateChart('chart-rnlt-vendedores', {
+        type: 'bar',
+        data: {
+          labels: ['Brayam Vielma 🥇', 'Irene Perez 🥈'],
+          datasets: [{
+            label: 'Unidades Vendidas',
+            data: [9, 6],
+            backgroundColor: ['#f59e0b', '#94a3b8'],
+            borderRadius: 8,
+            borderWidth: 1,
+            borderColor: ['#d97706', '#64748b']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, ticks: { stepSize: 2 } } }
+        }
+      });
+
+      // Mensual RNLT (Ene: 32 $856.7k, Feb: 31 $756.5k, etc)
+      createOrUpdateChart('chart-rnlt-mensual', {
+        type: 'bar',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Unidades',
+              data: [32, 31, 27, 27, 29, 17, 24, 23, 13, 15],
+              backgroundColor: '#0ea5e9',
+              borderRadius: 6,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'Facturación ($ USD)',
+              data: [856700, 756553, 767943, 791669, 735519, 477034, 621631, 674019, 348502, 379655],
+              borderColor: '#0284c7',
+              backgroundColor: 'rgba(2, 132, 199, 0.1)',
+              tension: 0.35,
+              fill: true,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { title: { display: true, text: 'Unidades' } },
+            y1: {
+              position: 'right',
+              grid: { drawOnChartArea: false },
+              ticks: { callback: (v) => '$' + (v / 1000).toFixed(0) + 'k' }
+            }
+          }
+        }
+      });
+
+      // Condición de pago
+      createOrUpdateChart('chart-rnlt-condicion', {
+        type: 'doughnut',
+        data: {
+          labels: ['Financiamiento (181)', 'Contado (56)', 'Leasing (1)'],
+          datasets: [{
+            data: [181, 56, 1],
+            backgroundColor: ['#0284c7', '#38bdf8', '#cbd5e1'],
+            borderColor: '#ffffff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } }
+        }
+      });
+
+      // 14 Modelos acumulados 2026 (237 unidades)
+      createOrUpdateChart('chart-rnlt-modelos', {
+        type: 'bar',
+        data: {
+          labels: [
+            'Logan MT (49)', 'Kwid MT (34)', 'Stepway CVT (32)', 'Logan AT (28)',
+            'Duster MT 1.6 (24)', 'Kangoo MT (19)', 'Stepway MT (14)', 'Duster MT 1.3T (12)',
+            'Duster CVT 1.3T (8)', 'Oroch MT 1.6 (6)', 'Oroch CVT 1.3T (5)', 'Kardian DCT (3)',
+            'Kangoo Ambul (2)', 'Kardian MT (1)'
+          ],
+          datasets: [{
+            label: 'Unidades',
+            data: [49, 34, 32, 28, 24, 19, 14, 12, 8, 6, 5, 3, 2, 1],
+            backgroundColor: '#0284c7',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { x: { beginAtZero: true } }
+        }
+      });
+
+      // Vehículos Usados RNLT (27 u.)
+      createOrUpdateChart('chart-rnlt-usados', {
+        type: 'bar',
+        data: {
+          labels: ['Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [{
+            label: 'Usados Vendidos',
+            data: [1, 1, 1, 1, 3, 3, 8, 7, 2],
+            backgroundColor: '#10b981',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, ticks: { stepSize: 2 } } }
+        }
+      });
+    }
+
+    // 2. VAS CHARTS (DATOS EXACTOS DEL EXCEL)
+    function initVasCharts() {
+      // Vendedores VAS
+      createOrUpdateChart('chart-vas-vendedores', {
+        type: 'bar',
+        data: {
+          labels: ['Reneisy 🥇', 'Yendi Gutierrez 🥈'],
+          datasets: [{
+            label: 'Unidades Vendidas',
+            data: [16, 11],
+            backgroundColor: ['#f59e0b', '#94a3b8'],
+            borderRadius: 8,
+            borderWidth: 1,
+            borderColor: ['#d97706', '#64748b']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, ticks: { stepSize: 4 } } }
+        }
+      });
+
+      // Mensual VAS (Ene 7, Feb 14, Mar 11, Abr 6, May 13, Jun 4, Jul 9, Ago 9, Sep 15, Oct 27)
+      createOrUpdateChart('chart-vas-mensual', {
+        type: 'bar',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Unidades VAS',
+              data: [7, 14, 11, 6, 13, 4, 9, 9, 15, 27],
+              backgroundColor: '#38bdf8',
+              borderRadius: 6,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'Facturación ($ USD)',
+              data: [251983, 511329, 405086, 221897, 476810, 134061, 332873, 292386, 508893, 822127],
+              borderColor: '#0284c7',
+              tension: 0.35,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { title: { display: true, text: 'Unidades' } },
+            y1: {
+              position: 'right',
+              grid: { drawOnChartArea: false },
+              ticks: { callback: (v) => '$' + (v / 1000).toFixed(0) + 'k' }
+            }
+          }
+        }
+      });
+
+      // Modelos VAS: T-Cross 83 (72.17%), Tera 21 (18.26%), Virtus 11 (9.57%)
+      createOrUpdateChart('chart-vas-modelos', {
+        type: 'doughnut',
+        data: {
+          labels: ['T-Cross HL 1.6L AT (83)', 'Tera CL 1.6L MT (21)', 'Virtus 1.6 MT (11)'],
+          datasets: [{
+            data: [83, 21, 11],
+            backgroundColor: ['#0ea5e9', '#06b6d4', '#818cf8'],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }
+        }
+      });
+    }
+
+    // 3. POSVENTA CHARTS
+    function initPosventaCharts() {
+      createOrUpdateChart('chart-posventa-marcas-anual', {
+        type: 'bar',
+        data: {
+          labels: ['Renault (290)', 'Volkswagen (106)'],
+          datasets: [
+            {
+              label: 'Año 2025 (35)',
+              data: [29, 6],
+              backgroundColor: '#94a3b8',
+              borderRadius: 6
+            },
+            {
+              label: 'Año 2026 (361)',
+              data: [261, 100],
+              backgroundColor: '#0284c7',
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+
+    // MODAL KM CHARTS (392 SERVICIOS)
+    function initModalKmCharts() {
+      createOrUpdateChart('chart-modal-km-bar', {
+        type: 'bar',
+        data: {
+          labels: ['5,000 KM', '1,000 KM', '10,000 KM', '15,000 KM', '20,000 KM', '25,000 KM', '20k Adic.', '30,000 KM', '35,000 KM'],
+          datasets: [{
+            label: 'Servicios',
+            data: [141, 139, 65, 21, 17, 6, 1, 1, 1],
+            backgroundColor: '#0ea5e9',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { title: { display: true, text: 'Distribución por Kilometraje (Total: 392)', color: '#0f172a' } }
+        }
+      });
+
+      createOrUpdateChart('chart-modal-km-pie', {
+        type: 'pie',
+        data: {
+          labels: ['5k KM (36.0%)', '1k KM (35.5%)', '10k KM (16.6%)', '15k KM (5.4%)', '20k KM (4.3%)', 'Otros (2.3%)'],
+          datasets: [{
+            data: [141, 139, 65, 21, 17, 9],
+            backgroundColor: ['#0284c7', '#0ea5e9', '#38bdf8', '#7dd3fc', '#6366f1', '#cbd5e1'],
+            borderColor: '#ffffff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 } } } }
+        }
+      });
+    }
+
+    // 4. FINANZAS CHARTS (DATOS EXACTOS DEL EXCEL)
+    function initFinanzasCharts() {
+      createOrUpdateChart('chart-finanzas-concesionarios', {
+        type: 'bar',
+        data: {
+          labels: ['Renault Chacao', 'VW Chacao', 'Otros', 'Ducati', 'Xiro'],
+          datasets: [
+            {
+              label: 'Total Pendiente ($ USD)',
+              data: [9605784.29, 6023042.90, 1368223.07, 857402.64, 397776.81],
+              backgroundColor: '#0ea5e9',
+              borderRadius: 6
+            },
+            {
+              label: 'Total Cobrado ($ USD)',
+              data: [2585046.35, 940958.33, 1332825.97, 328309.80, 21057.93],
+              backgroundColor: '#10b981',
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { ticks: { callback: (v) => '$' + (v / 1000000).toFixed(1) + 'M' } }
+          }
+        }
+      });
+
+      createOrUpdateChart('chart-finanzas-distribucion', {
+        type: 'doughnut',
+        data: {
+          labels: ['Renault Chacao (52.6%)', 'VW Chacao (33.0%)', 'Otros (7.5%)', 'Ducati (4.7%)', 'Xiro (2.2%)'],
+          datasets: [{
+            data: [9605784.29, 6023042.90, 1368223.07, 857402.64, 397776.81],
+            backgroundColor: ['#0284c7', '#0ea5e9', '#6366f1', '#e11d48', '#f59e0b'],
+            borderColor: '#ffffff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 } } } }
+        }
+      });
+    }
+
+    // 5. ADMINISTRACIÓN CHARTS (DATOS EXACTOS DEL EXCEL)
+    function initAdministracionCharts() {
+      createOrUpdateChart('chart-admin-cascada', {
+        type: 'bar',
+        data: {
+          labels: ['Utilidad Bruta', 'Comisiones Totales', 'Ganancia Neta Final'],
+          datasets: [{
+            label: 'Monto ($ USD)',
+            data: [74297, -39267, 21760],
+            backgroundColor: ['#0284c7', '#f59e0b', '#10b981'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { ticks: { callback: (v) => '$' + v.toLocaleString() } } }
+        }
+      });
+
+      createOrUpdateChart('chart-admin-inventario', {
+        type: 'doughnut',
+        data: {
+          labels: ['Patio Propio (9 u. - 50.0%)', 'Consignación RNLT (8 u. - 44.4%)', 'Consignación VW (1 u. - 5.6%)'],
+          datasets: [{
+            data: [9, 8, 1],
+            backgroundColor: ['#0284c7', '#0ea5e9', '#38bdf8'],
+            borderColor: '#ffffff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } }
+        }
+      });
+    }
+
+    // 6. SEGUROS AREKUNA CHARTS (DATOS EXACTOS DEL EXCEL)
+    function initArekunaCharts() {
+      createOrUpdateChart('chart-arekuna-emisiones', {
+        type: 'bar',
+        data: {
+          labels: ['Seguros Caracas (27)', 'Seguros Oceánica (35)'],
+          datasets: [
+            {
+              label: 'Cobrado',
+              data: [8, 11],
+              backgroundColor: '#10b981',
+              borderRadius: 6
+            },
+            {
+              label: 'Pendiente',
+              data: [19, 24],
+              backgroundColor: '#f59e0b',
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      createOrUpdateChart('chart-arekuna-siniestros-marca', {
+        type: 'bar',
+        data: {
+          labels: ['Renault (35)', 'Volkswagen (7)'],
+          datasets: [
+            { label: 'Procesados', data: [5, 1], backgroundColor: '#10b981', borderRadius: 4 },
+            { label: 'En Proceso', data: [20, 2], backgroundColor: '#0ea5e9', borderRadius: 4 },
+            { label: 'Pendientes', data: [10, 4], backgroundColor: '#f59e0b', borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+    }
+
+    // 7. GESTIÓN INTEGRAL CHARTS (DATOS EXACTOS DEL EXCEL)
+    function initGestionCharts() {
+      // Cumplimiento
+      createOrUpdateChart('chart-cumplimiento-status', {
+        type: 'bar',
+        data: {
+          labels: ['Clientes Activos', 'VAS x Analizar', 'RNLT x Analizar', 'XIRO x Analizar', 'Rechazado'],
+          datasets: [{
+            label: 'Expedientes',
+            data: [432, 4, 2, 2, 1],
+            backgroundColor: ['#10b981', '#0ea5e9', '#0284c7', '#f59e0b', '#ef4444'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } }
+        }
+      });
+
+      // Legal Documentos (46 totales: 22 actas, 23 addendums, 10 contratos laborales)
+      createOrUpdateChart('chart-legal-documentos', {
+        type: 'bar',
+        data: {
+          labels: ['Actas de Asamblea', 'Addendums', 'Contratos de Trabajo'],
+          datasets: [{
+            label: 'Documentos',
+            data: [22, 23, 10],
+            backgroundColor: '#38bdf8',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } }
+        }
+      });
+
+      // Legal Cobranzas: $58,072.80 recuperado vs $35,774.50 en proceso
+      createOrUpdateChart('chart-legal-cobranzas', {
+        type: 'doughnut',
+        data: {
+          labels: ['Ingreso Recuperado ($58,072.80)', 'Monto en Proceso ($35,774.50)'],
+          datasets: [{
+            data: [58072.80, 35774.50],
+            backgroundColor: ['#10b981', '#f59e0b'],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } }
+        }
+      });
+
+      // Servicios Generales: 12 inmuebles
+      createOrUpdateChart('chart-servicios-horas', {
+        type: 'bar',
+        data: {
+          labels: ['Casa 37', 'CASA 27', 'A16', 'A418', 'Marlin', '4K', '4F', '2720', 'Hangar', 'Edif Nena', 'VAS Ven', '2721'],
+          datasets: [
+            { label: 'Prog (h)', data: [23, 12, 5, 5, 11, 5, 5, 4, 9, 32, 8, 7], backgroundColor: '#cbd5e1', borderRadius: 4 },
+            { label: 'Ejec (h)', data: [24.9, 9.7, 4, 4, 8, 3.5, 5, 4, 8, 28.3, 8, 6], backgroundColor: '#0284c7', borderRadius: 4 }
+          ]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+
+      // Mercadeo Leads: 485 vs 132
+      createOrUpdateChart('chart-mercadeo-leads', {
+        type: 'doughnut',
+        data: {
+          labels: ['Renault (485 leads - 78.6%)', 'Volkswagen (132 leads - 21.4%)'],
+          datasets: [{
+            data: [485, 132],
+            backgroundColor: ['#0284c7', '#38bdf8'],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } }
+        }
+      });
+
+      // Procesos: 54.6h vs 5.8h
+      createOrUpdateChart('chart-procesos-tiempos', {
+        type: 'bar',
+        data: {
+          labels: ['Tiempo Proceso Actual', 'Tiempo Proceso Optimizado'],
+          datasets: [{
+            label: 'Horas / Mes',
+            data: [54.6, 5.8],
+            backgroundColor: ['#f43f5e', '#10b981'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      // RRHH Gasto: Efectivo $78,770 vs Creska $9,250
+      createOrUpdateChart('chart-rrhh-gasto', {
+        type: 'pie',
+        data: {
+          labels: ['Pagos en Efectivo ($78,770)', 'Abono en Creska ($9,250)'],
+          datasets: [{
+            data: [78770, 9250],
+            backgroundColor: ['#0284c7', '#06b6d4'],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } }
+        }
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      Object.values(charts).forEach(chart => {
+        if (chart) chart.resize();
+      });
+    });
+  </script>
+</body>
+</html>
